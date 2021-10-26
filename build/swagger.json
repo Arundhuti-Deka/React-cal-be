@@ -1,0 +1,993 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": " Technologies used: NodeJS, Express & MongoDB",
+        "version": "1.0.0",
+        "title": "This is a  Jamstack Ecommerce"
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/admin/addAdmin": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Create new admin",
+                "description": "",
+                "operationId": "Enter details",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/authenticate": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Admin authenticate",
+                "description": "",
+                "operationId": "Admin authenticate",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Admin authenticate",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/adminCheck": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "admin check",
+                "description": "",
+                "operationId": "admin check",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/adminProfile": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "admin Profile check",
+                "description": "",
+                "operationId": "admin Profile",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/changePassword": {
+            "post": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Change Admin password",
+                "description": "",
+                "operationId": "Change Admin password",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "change admin password",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "currentPassword": {
+                                    "type": "string"
+                                },
+                                "newPassword": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/allUsers": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Get All Users",
+                "description": "",
+                "operationId": "Get All Users",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/getUserById/{id}": {
+            "get": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Get User Details",
+                "description": "",
+                "operationId": "Get User Details",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Get User Details By id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/admin/userEnable": {
+            "put": {
+                "tags": [
+                    "admin"
+                ],
+                "summary": "User Activation",
+                "description": "",
+                "operationId": "User Activation",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Activation",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "isActive": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/addCategory": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create new Category",
+                "description": "",
+                "operationId": "Enter Category details",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter Category details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "categoryName": {
+                                    "type": "string"
+                                },
+                                "imageUrl": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/allCategory": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get All Category",
+                "description": "",
+                "operationId": "Get All Category",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {}
+            }
+        },
+        "/category/categoryProducts/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Products By Category",
+                "description": "",
+                "operationId": "Products By Category",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Category ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/addProduct": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Add Product",
+                "description": "",
+                "operationId": "Add Product",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter Product details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "categoryId": {
+                                    "type": "string"
+                                },
+                                "productName": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "brand": {
+                                    "type": "string"
+                                },
+                                "color": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "images": {
+                                    "type": "string"
+                                },
+                                "countInStock": {
+                                    "type": "number"
+                                },
+                                "manufacture": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/getProductById/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get Product By Id",
+                "description": "",
+                "operationId": "Get Product By Id",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/editProduct/{id}": {
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Edit Product",
+                "description": "",
+                "operationId": "Edit Product",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Enter Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter Product details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "productName": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "brand": {
+                                    "type": "string"
+                                },
+                                "color": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "images": {
+                                    "type": "string"
+                                },
+                                "countInStock": {
+                                    "type": "number"
+                                },
+                                "manufacture": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/productStatus/{id}": {
+            "put": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Product Status",
+                "description": "",
+                "operationId": "Product Status",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Product ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Product Status Change",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isAvailable": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/category/allProducts": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get All Category",
+                "description": "",
+                "operationId": "Get All Category",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {}
+            }
+        },
+        "/order/createOrder": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "create order",
+                "description": "",
+                "operationId": "Add Product details",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Add Product details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "products": {
+                                    "type": "string"
+                                },
+                                "quantity": {
+                                    "type": "number"
+                                },
+                                "shippingAddress1": {
+                                    "type": "string"
+                                },
+                                "shippingAddress2": {
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "type": "string"
+                                },
+                                "zip": {
+                                    "type": "number"
+                                },
+                                "country": {
+                                    "type": "string"
+                                },
+                                "phoneNo": {
+                                    "type": "number"
+                                },
+                                "totalPrice": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/order/getUserOrders": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get User Orders",
+                "description": "",
+                "operationId": "Get User Orders",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/order/addCart": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "add cart",
+                "description": "",
+                "operationId": "Add Items in cart",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Add cart",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "products": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/order/getUserCart": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get User Cart",
+                "description": "",
+                "operationId": "Get User Cart",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/order/deleteCart": {
+            "delete": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Delete User Cart Items",
+                "description": "",
+                "operationId": "Delete User Cart Items",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Delete User Cart Items",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/addUser": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create new User",
+                "description": "",
+                "operationId": "Enter details",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter User details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string"
+                                },
+                                "lastName": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "phoneNo": {
+                                    "type": "number"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/authenticate": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "user authenticate",
+                "description": "",
+                "operationId": "user authenticate",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter user Details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/userCheck": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Check",
+                "description": "",
+                "operationId": "User Check",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/userProfile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Profile",
+                "description": "",
+                "operationId": "User Profile",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/userDisable": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Disable ",
+                "description": "",
+                "operationId": "User Disable",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Disable",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isActive": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/changePassword": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "change user password ",
+                "description": "",
+                "operationId": "change user password",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter user password",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "currentPassword": {
+                                    "type": "string"
+                                },
+                                "newPassword": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/sendEmail": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Send Email",
+                "description": "",
+                "operationId": "Send Email",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Send Email",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/user/resetPassword": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Reset password",
+                "description": "",
+                "operationId": "Reset password",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Reset password",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                },
+                                "newPassword": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    }
+}
